@@ -64,9 +64,10 @@ numrows <-nrow(activity_file)
 missing_rows <- nrow(activity_file[is.na(activity_file$steps),])
 cat("Number of missing rows is",(missing_rows))
 
-## My strategy is to replace all NAs with the mean value of the steps from myfile data frame
+## My strategy is to replace all NAs with the mean value of the steps 
 ## replacing missing value with the mean of the steps
-## New data set is activity_data
+## New data set is activity
+
 activity <- activity_file
 numrow <- is.na(activity_file$steps)
 activity$steps[numrow] <- mean(activity_file$steps,na.rm=T)
