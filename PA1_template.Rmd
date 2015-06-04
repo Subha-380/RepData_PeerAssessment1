@@ -94,10 +94,14 @@ cat("New median is",(new_median))
 
 activity$days <- factor(weekdays(as.Date(activity$date)) %in% c("Saturday","Sunday"))
 
+## Adding the 2 levels 
 levels(activity$days)[levels(activity$days)=="TRUE"] <- "weekend"
 levels(activity$days)[levels(activity$days)=="FALSE"] <-"weekday"
-mod_Steps_int <- aggregate(steps~interval + days,data = activity,mean)
 
+## aggregating data over the weekday/weekend
+mod_Steps_int <- aggregate(steps~interval + days,data = activity, mean)
+
+## using lattice to create the plot
 library(lattice)
 xyplot(steps ~ interval | factor(days), data = mod_Steps_int, aspect = 1/2, type = "l", xlab = "Interval",ylab = "Number of steps")
 
